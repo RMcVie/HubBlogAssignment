@@ -21,6 +21,12 @@ jobs:
     - run: dotnet publish HubBlogAssigmnent.UI/HubBlogAssigmnent.UI.csproj --configuration Release --output outputUi
     - run: dotnet publish HubBlogAssigmnent.UI/HubBlogAssigmnent.UI.csproj --configuration Release --output outputFunction
 
+    - name: Azure Functions Action
+      uses: Azure/functions-action@v1.4.0
+      with:
+        app-name: "PersonalAzureFunction"
+        # Path to package or folder. *.zip or a folder to deploy
+        package: "outputFunction"
 
     - name: Build And Deploy
       if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
@@ -31,7 +37,6 @@ jobs:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         action: "upload"
         app_location: "outputUi/wwwroot/"
-        api_location: "outputFunction"
         output_location: ''
         skip_app_build: true
 ###
