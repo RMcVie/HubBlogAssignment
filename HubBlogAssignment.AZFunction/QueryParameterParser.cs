@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HubBlogAssignment.Shared
+namespace HubBlogAssignment.AZFunction
 {
-    public enum OrderBy
+    public class QueryParameterParser
     {
-        New,
-        Top
+
     }
 }

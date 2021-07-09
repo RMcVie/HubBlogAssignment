@@ -1,14 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace HubBlogAssignment.Shared
+namespace HubBlogAssigmnent.UI.Components
 {
-    public enum OrderBy
+    public partial class CategorySelector
     {
-        New,
-        Top
+        
     }
 }

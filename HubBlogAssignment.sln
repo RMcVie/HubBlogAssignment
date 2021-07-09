@@ -1,13 +1,13 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HubBlogAssignment.Shared", "HubBlogAssignment.Shared\HubBlogAssignment.Shared.csproj", "{DE471B47-585F-408A-897F-C4201DD14DE2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HubBlogAssignemnt.AZFunction", "HubBlogAssignemnt.AZFunction\HubBlogAssignemnt.AZFunction.csproj", "{F19F6ABC-0725-4ADB-B0E1-28BCF1C141E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HubBlogAssignment.AZFunction", "HubBlogAssignment.AZFunction\HubBlogAssignment.AZFunction.csproj", "{F19F6ABC-0725-4ADB-B0E1-28BCF1C141E2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HubBlogAssignemnt.Data", "HubBlogAssignemnt.Data\HubBlogAssignemnt.Data.csproj", "{8D405AC7-F5E9-419C-825A-BCC0C6718661}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HubBlogAssignment.Data", "HubBlogAssignment.Data\HubBlogAssignment.Data.csproj", "{8D405AC7-F5E9-419C-825A-BCC0C6718661}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{65D0CC2A-A242-4117-9BF7-4B1A2A9B0107}"
 	ProjectSection(SolutionItems) = preProject
@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HubBlogAssignment.Tests", "HubBlogAssignment.Tests\HubBlogAssignment.Tests.csproj", "{98639B76-2A28-469E-9EB9-16F6845EF4DF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HubBlogAssigmnent.UI", "HubBlogAssigmnent.UI\HubBlogAssigmnent.UI.csproj", "{34C1222F-66B7-4801-A13C-9D484347F6DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HubBlogAssignment.UI", "HubBlogAssignment.UI\HubBlogAssignment.UI.csproj", "{34C1222F-66B7-4801-A13C-9D484347F6DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

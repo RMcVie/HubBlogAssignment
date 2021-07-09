@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HubBlogAssignemnt.AZFunction\HubBlogAssignemnt.AZFunction.csproj" />
+    <ProjectReference Include="..\HubBlogAssignment.AZFunction\HubBlogAssignment.AZFunction.csproj" />
   </ItemGroup>
 
 </Project>

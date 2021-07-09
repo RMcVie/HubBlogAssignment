@@ -1,4 +1,4 @@
-﻿namespace HubBlogAssignment.Shared
+namespace HubBlogAssignment.Shared
 {
     public class PostDmlDto
     {
