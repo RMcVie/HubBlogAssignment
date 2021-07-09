@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace HubBlogAssigmnent.UI.Services
+namespace HubBlogAssignment.UI.Services
 {
     public class CategoryService : ICategoryService
     {

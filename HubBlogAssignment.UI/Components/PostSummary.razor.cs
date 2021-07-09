@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HubBlogAssigmnent.UI.Components
+namespace HubBlogAssignment.UI.Components
 {
     public partial class PostSummary
     {

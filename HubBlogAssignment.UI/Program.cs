@@ -1,4 +1,3 @@
-using HubBlogAssigmnent.UI.Services;
 using HubBlogAssignment.UI.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -11,7 +10,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HubBlogAssigmnent.UI
+namespace HubBlogAssignment.UI
 {
     public class Program
     {

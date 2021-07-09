@@ -1,11 +1,10 @@
 using HubBlogAssignment.Shared;
-using HubBlogAssignment.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HubBlogAssigmnent.UI.Services
+namespace HubBlogAssignment.UI.Services
 {
     public interface ICommentService
     {

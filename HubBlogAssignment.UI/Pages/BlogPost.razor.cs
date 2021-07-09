@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HubBlogAssigmnent.UI.Pages
+namespace HubBlogAssignment.UI.Pages
 {
     public partial class BlogPost : ComponentBase
     {

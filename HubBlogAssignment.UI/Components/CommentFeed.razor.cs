@@ -1,4 +1,4 @@
-using HubBlogAssigmnent.UI.Services;
+using HubBlogAssignment.UI.Services;
 using HubBlogAssignment.Shared;
 using Microsoft.AspNetCore.Components;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace HubBlogAssigmnent.UI.Components
+namespace HubBlogAssignment.UI.Components
 {
     public partial class CommentFeed : ComponentBase
     {
