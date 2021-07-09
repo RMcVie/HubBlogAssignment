@@ -1,0 +1,38 @@
+﻿@page "/"
+@using HubBlogAssigmnent.UI.Components
+<h1>Hub Blog</h1>
+
+@if (Posts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <MudCarousel Style="height:200px;" ShowArrows="@true" ShowDelimiters="@true" AutoCycle="@true" TData="object">
+        <MudCarouselItem Color="@Color.Primary">
+            <div class="d-flex" style="height:100%">
+                <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Size="@Size.Large" />
+            </div>
+        </MudCarouselItem>
+        <MudCarouselItem Color="@Color.Secondary">
+            <div class="d-flex" style="height:100%">
+                <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Size="@Size.Large" />
+            </div>
+        </MudCarouselItem>
+        <MudCarouselItem>
+            <div class="d-flex" style="height:100%">
+                <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Color="@Color.Primary" Size="@Size.Large" />
+            </div>
+        </MudCarouselItem>
+    </MudCarousel>
+    <MudContainer Class="mt-16 px-8" MaxWidth="MaxWidth.False">
+        <MudGrid>
+            @foreach (var post in Posts)
+            {
+                <MudItem xs="12" sm="6" md="4">
+                    <PostSummary Post="post" OnPostClickCallback="@NavigateToPost"/>
+                </MudItem>
+            }
+        </MudGrid>
+    </MudContainer>
+}
