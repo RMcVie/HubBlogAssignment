@@ -18,7 +18,9 @@ jobs:
     - name: Setup .NET Core  # Install the version in global.json
       uses: actions/setup-dotnet@v1
 
-    - run: dotnet publish HubBlogAssigmnent.UI/HubBlogAssigmnent.UI.csproj --configuration Release --output output
+    - run: dotnet publish HubBlogAssigmnent.UI/HubBlogAssigmnent.UI.csproj --configuration Release --output outputUi
+    - run: dotnet publish HubBlogAssigmnent.UI/HubBlogAssigmnent.UI.csproj --configuration Release --output outputFunction
+
 
     - name: Build And Deploy
       if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
@@ -28,7 +30,8 @@ jobs:
         azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_LIVELY_BUSH_0CEAA5C03 }}
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         action: "upload"
-        app_location: "output/wwwroot/"
+        app_location: "outputUi/wwwroot/"
+        api_location: "outputFunction"
         output_location: ''
         skip_app_build: true
 ###
