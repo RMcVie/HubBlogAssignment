@@ -19,7 +19,7 @@ jobs:
       uses: actions/setup-dotnet@v1
 
     - run: dotnet publish HubBlogAssigmnent.UI/HubBlogAssigmnent.UI.csproj --configuration Release --output outputUi
-    - run: dotnet publish HubBlogAssigmnent.UI/HubBlogAssigmnent.UI.csproj --configuration Release --output outputFunction
+    - run: dotnet publish HubBlogAssigmnent.AZFunction/HubBlogAssigmnent.AZFunction.csproj --configuration Release --output outputFunction
   
     - name: Login via Az module
       uses: azure/login@v1
