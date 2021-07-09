@@ -18,10 +18,10 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
-      - name: Install .Net 5
+      - name: Install .Net 3.1
         run: |
           sudo apt-get update
-          sudo apt-get install -y dotnet-sdk-5.0
+          sudo apt-get install -y dotnet-sdk-3.1
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
