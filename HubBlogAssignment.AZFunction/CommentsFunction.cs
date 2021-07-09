@@ -23,7 +23,7 @@ namespace HubBlogAssignment.AZFunction
         }
 
         [Function("GetComments")]
-        public async Task<HttpResponseData> Get([HttpTrigger(AuthorizationLevel.Function, "get", Route = "Posts/{id}/Comments")] HttpRequestData req, int id, string orderBy = default)
+        public async Task<HttpResponseData> Get([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Posts/{id}/Comments")] HttpRequestData req, int id, string orderBy = default)
         {
             if (await dataAccess.GetPost(id) == null)
                 return req.CreateResponse(HttpStatusCode.NotFound);
@@ -37,7 +37,7 @@ namespace HubBlogAssignment.AZFunction
         }
 
         [Function("CreateComment")]
-        public async Task<HttpResponseData> Post([HttpTrigger(AuthorizationLevel.Function, "post", Route = "Posts/{id}/Comments")] HttpRequestData req, int id)
+        public async Task<HttpResponseData> Post([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "Posts/{id}/Comments")] HttpRequestData req, int id)
         {
             var comment = await req.ReadFromJsonAsync<CommentDb>().ConfigureAwait(false);
 

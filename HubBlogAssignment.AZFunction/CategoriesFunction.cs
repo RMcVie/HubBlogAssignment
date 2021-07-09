@@ -20,7 +20,7 @@ namespace HubBlogAssignment.AZFunction
         }
 
         [Function("GetCategories")]
-        public async Task<HttpResponseData> Get([HttpTrigger(AuthorizationLevel.Function, "get", Route = "Categories")] HttpRequestData req)
+        public async Task<HttpResponseData> Get([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Categories")] HttpRequestData req)
         {
             var categories = await dataAccess.GetCategories().ConfigureAwait(false);
             var response = req.CreateResponse();
@@ -31,7 +31,7 @@ namespace HubBlogAssignment.AZFunction
         }
 
         [Function("CreateCategory")]
-        public async Task<HttpResponseData> Post([HttpTrigger(AuthorizationLevel.Function, "post", Route = "Categories")] HttpRequestData req)
+        public async Task<HttpResponseData> Post([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "Categories")] HttpRequestData req)
         {
             var category = await req.ReadFromJsonAsync<string>().ConfigureAwait(false);
 

@@ -21,7 +21,7 @@ namespace HubBlogAssignment.AZFunction
         }
 
         [Function("GetPosts")]
-        public async Task<HttpResponseData> GetPosts([HttpTrigger(AuthorizationLevel.Function, "get", Route = "Posts")] HttpRequestData req)
+        public async Task<HttpResponseData> GetPosts([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Posts")] HttpRequestData req)
         {
             var posts = await dataAccess.GetPosts().ConfigureAwait(false);
             var response = req.CreateResponse();
@@ -31,7 +31,7 @@ namespace HubBlogAssignment.AZFunction
         }
 
         [Function("GetPost")]
-        public async Task<HttpResponseData> GetPost([HttpTrigger(AuthorizationLevel.Function, "get", Route = "Posts/{id}")] HttpRequestData req, int id)
+        public async Task<HttpResponseData> GetPost([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Posts/{id}")] HttpRequestData req, int id)
         {
             var post = await dataAccess.GetPost(id).ConfigureAwait(false);
             var response = req.CreateResponse();
