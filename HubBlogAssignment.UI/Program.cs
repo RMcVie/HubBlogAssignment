@@ -24,7 +24,12 @@ namespace HubBlogAssignment.UI
             builder.Services.AddScoped<ICommentService, CommentService>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddMudServices();
-            
+
+            builder.Services.AddMsalAuthentication(options =>
+            {
+                builder.Configuration.Bind("AzureAdB2C", options.ProviderOptions.Authentication);
+            });
+
             await builder.Build().RunAsync();
         }
     }

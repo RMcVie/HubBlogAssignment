@@ -6,3 +6,4 @@ change order by into enum
 Clean up unused clases e.g. queryparams
 Reorder faker properties
 Figure out what a delegate is
+Make repo public
