@@ -1,5 +1,6 @@
 @page "/"
 @using HubBlogAssignment.UI.Components
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 <h1>Hub Blog</h1>
 
 @if (Posts == null)
@@ -30,7 +31,7 @@ else
             @foreach (var post in Posts)
             {
                 <MudItem xs="12" sm="6" md="4">
-                    <PostSummary Post="post" OnPostClickCallback="@NavigateToPost"/>
+                    <PostSummary Post="post" OnPostClickCallback="@NavigateToPost" />
                 </MudItem>
             }
         </MudGrid>

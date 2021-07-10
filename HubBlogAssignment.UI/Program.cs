@@ -19,7 +19,13 @@ namespace HubBlogAssignment.UI
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
 
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:7071/api/")});
+            builder.Services.AddScoped<CustomAuthorizationMessageHandler>();
+            builder.Services.AddHttpClient("ServerAPI", client =>
+              client.BaseAddress = new Uri("https://personalazurefunction.azurewebsites.net/api/"))
+                    .AddHttpMessageHandler<CustomAuthorizationMessageHandler>();
+            //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:7071/api/")});
+            builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
+             .CreateClient("ServerAPI"));
             builder.Services.AddScoped<IPostService, PostService>();
             builder.Services.AddScoped<ICommentService, CommentService>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
@@ -28,6 +34,7 @@ namespace HubBlogAssignment.UI
             builder.Services.AddMsalAuthentication(options =>
             {
                 builder.Configuration.Bind("AzureAdB2C", options.ProviderOptions.Authentication);
+                options.ProviderOptions.DefaultAccessTokenScopes.Add("https://personalazurefunction.azurewebsites.net/api/");
             });
 
             await builder.Build().RunAsync();
