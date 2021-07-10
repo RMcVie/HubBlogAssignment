@@ -19,22 +19,25 @@ namespace HubBlogAssignment.UI
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
 
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://personalazurefunction.azurewebsites.net/api/") });
+            builder.Services.AddScoped<CustomAuthorizationMessageHandler>();
+
+            builder.Services.AddHttpClient("ServerAPI", client =>
+              client.BaseAddress = new Uri("https://hubblogazurefunction.azurewebsites.net"))
+                    .AddHttpMessageHandler<CustomAuthorizationMessageHandler>();
+
+            builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
+             .CreateClient("ServerAPI"));
 
             builder.Services.AddMsalAuthentication(options =>
             {
                 builder.Configuration.Bind("AzureAdB2C", options.ProviderOptions.Authentication);
+                options.ProviderOptions.DefaultAccessTokenScopes.Add("https://HubBlog.onmicrosoft.com/b1c766ae-b476-4c93-9988-27067c30dba2/API.Access");
             });
 
             builder.Services.AddScoped<IPostService, PostService>();
             builder.Services.AddScoped<ICommentService, CommentService>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddMudServices();
-
-            builder.Services.AddMsalAuthentication(options =>
-            {
-                builder.Configuration.Bind("AzureAdB2C", options.ProviderOptions.Authentication);
-            });
 
             await builder.Build().RunAsync();
         }
