@@ -8,7 +8,8 @@ public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
         : base(provider, navigationManager)
     {
         ConfigureHandler(
-            authorizedUrls: new[] { "<your function app url>" },
-            scopes: new[] { "<the function app  API scope your define>" });
+            authorizedUrls: new[] { "http://localhost:7071/api/" }
+            //,scopes: new[] { "<the function app  API scope your define>" }
+            );
     }
 }
