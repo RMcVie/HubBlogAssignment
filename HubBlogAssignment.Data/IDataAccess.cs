@@ -1,3 +1,4 @@
+using HubBlogAssignment.Data.Entities;
 using HubBlogAssignment.Shared;
 using System;
 using System.Collections.Generic;
@@ -7,14 +8,14 @@ namespace HubBlogAssignment.Data
 {
     public interface IDataAccess
     {
-        Task<IEnumerable<string>> GetCategories();
-        Task CreateCategory(string category);
-        Task<IEnumerable<PostDb>> GetPosts();
-        Task<PostDb> GetPost(int id);
-        Task CreatePost(PostDb post);
-        Task DeletePost(PostDb post);
-        Task CreateComment(int postId, CommentDb comment);
-        Task DeleteComment(CommentDb comment);
-        Task<IEnumerable<CommentDb>> GetComments(int postId, OrderBy orderBy);
+        Task<IEnumerable<Category>> GetCategories();
+        Task<Category> CreateCategory(Category category);
+        Task<IEnumerable<Post>> GetPosts();
+        Task<Post> GetPost(int id);
+        Task<Post> CreatePost(Post post, Guid userObjectId);
+        Task DeletePost(Post post);
+        Task<Comment> CreateComment(int postId, Comment comment, Guid userObjectId);
+        Task DeleteComment(Comment comment);
+        Task<IEnumerable<Comment>> GetComments(int postId, OrderBy orderBy);
     }
 }

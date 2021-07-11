@@ -1,27 +1,3 @@
-@*@using HubBlogAssignment.Shared;
-
-    @if (Comments == null)
-    {
-        <p><em>Loading...</em></p>
-    }
-    else
-    {
-    <MudGrid Class="mt-8">
-        <MudItem xs="12" sm="12" md="12">
-            <MudSelect T="OrderBy" Label="Sort" ValueChanged="@(args => LoadData(args))">
-                <MudSelectItem Value="@OrderBy.New" />
-                <MudSelectItem Value="@OrderBy.Top" />
-            </MudSelect>
-        </MudItem>
-        @foreach (var comment in Comments)
-        {
-            <MudItem xs="8" sm="8" md="8">
-                <CommentCard Comment="comment"></CommentCard>
-            </MudItem>
-        }
-    </MudGrid>
-    }*@
-
 @if (Comments == null)
 {
     <p><em>Loading...</em></p>
@@ -30,6 +6,12 @@ else
 {
     <div class="d-flex flex-grow-1 flex-row">
         <MudPaper Elevation="25" Class="py-4 flex-grow-1">
+            <div class="ml-4" style="width:100px">
+                <MudSelect T="OrderBy" Label="Sort" ValueChanged="@(args => LoadData(args))">
+                    <MudSelectItem Value="@OrderBy.New" />
+                    <MudSelectItem Value="@OrderBy.Top" />
+                </MudSelect>
+            </div>
             <div class="d-flex flex-column px-4" style="max-height:800px; overflow:scroll;">
                 @foreach (var comment in Comments)
                 {
@@ -37,10 +19,19 @@ else
                 }
             </div>
             <MudPaper Elevation="25" Class="d-flex flex-row px-2 mx-4" Style="background-color: var(--mud-palette-background-grey);">
-                    <MudIconButton Icon="@Icons.Material.Filled.AddCircle"></MudIconButton>
-                    <MudTextField T="string" Placeholder="Create Comment" DisableUnderLine="true" @bind-Value="CommentText" Class="mt-n2 mx-4"></MudTextField>
-                    <MudIconButton Icon="@Icons.Material.Outlined.Send" Color="Color.Default" OnClick="CreateComment"></MudIconButton>
-                </MudPaper>
+                <MudIconButton Icon="@Icons.Material.Filled.AddCircle"></MudIconButton>
+                <MudTextField T="string" Placeholder="Create Comment" DisableUnderLine="true" @bind-Value="CommentText" Class="mt-n2 mx-4"></MudTextField>
+                <AuthorizeView>
+                    <Authorized>
+                        <MudIconButton Icon="@Icons.Material.Outlined.Send" Color="Color.Primary" OnClick="CreateComment"></MudIconButton>
+                    </Authorized>
+                    <NotAuthorized>
+                        <MudTooltip Text="Sign in to send comments!">
+                            <MudIconButton Icon="@Icons.Material.Outlined.Send" Color="Color.Dark" Disabled="true"></MudIconButton>
+                        </MudTooltip>
+                    </NotAuthorized>
+                </AuthorizeView>
+            </MudPaper>
         </MudPaper>
     </div>
 }

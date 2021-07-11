@@ -8,20 +8,22 @@ namespace HubBlogAssignment.UI.Services
 {
     public class PostService : IPostService
     {
-        private readonly HttpClient httpClient;
-        public PostService(HttpClient httpClient)
+        private readonly IHttpClientFactory httpClientFactory;
+        public PostService(IHttpClientFactory httpClientFactory)
         {
-            this.httpClient = httpClient;
+            this.httpClientFactory = httpClientFactory;
         }
 
         public async Task<PostReadDto> GetPost(int id)
         {
-            return await httpClient.GetFromJsonAsync<PostReadDto>($"Posts/{id}");
+            var client = httpClientFactory.CreateClient("HubBlog.Api.NoAuth");
+            return await client.GetFromJsonAsync<PostReadDto>($"Posts/{id}");
         }
 
         public async Task<IEnumerable<PostReadDto>> GetPosts()
         {
-            return await httpClient.GetFromJsonAsync<PostReadDto[]>("Posts");
+            var client = httpClientFactory.CreateClient("HubBlog.Api.NoAuth");
+            return await client.GetFromJsonAsync<PostReadDto[]>("Posts");
         }
     }
 }

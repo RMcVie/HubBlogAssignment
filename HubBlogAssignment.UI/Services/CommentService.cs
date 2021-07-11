@@ -10,21 +10,23 @@ namespace HubBlogAssignment.UI.Services
 {
     public class CommentService : ICommentService
     {
-        private readonly HttpClient httpClient;
-        public CommentService(HttpClient httpClient)
+        private readonly IHttpClientFactory httpClientFactory;
+        public CommentService(IHttpClientFactory httpClientFactory)
         {
-            this.httpClient = httpClient;
+            this.httpClientFactory = httpClientFactory;
         }
 
         public async Task CreateComment(int postId, CommentDmlDto comment)
         {
-            var resp = await httpClient.PostAsJsonAsync($"Posts/{postId}/Comments", comment);
+            var client = httpClientFactory.CreateClient("HubBlog.Api.Auth");
+            var resp = await client.PostAsJsonAsync($"Posts/{postId}/Comments", comment);
             resp.EnsureSuccessStatusCode();
         }
 
         public async Task<IEnumerable<CommentReadDto>> GetComments(int postId, OrderBy OrderBy)
         {
-            return await httpClient.GetFromJsonAsync<IEnumerable<CommentReadDto>>($"Posts/{postId}/Comments?orderBy={OrderBy}");
+            var client = httpClientFactory.CreateClient("HubBlog.Api.NoAuth");
+            return await client.GetFromJsonAsync<IEnumerable<CommentReadDto>>($"Posts/{postId}/Comments?orderBy={OrderBy}");
         }
     }
 }

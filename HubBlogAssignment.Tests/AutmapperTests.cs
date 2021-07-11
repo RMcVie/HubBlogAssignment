@@ -1,5 +1,5 @@
 using AutoMapper;
-using HubBlogAssignment.AZFunction;
+using HubBlogAssignment.Api;
 using System;
 using Xunit;
 

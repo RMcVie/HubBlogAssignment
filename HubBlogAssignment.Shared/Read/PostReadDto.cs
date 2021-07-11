@@ -12,7 +12,6 @@ namespace HubBlogAssignment.Shared
         public string Title { get; set; }
         public string Summary { get; set; }
         public string Content { get; set; }
-        public string CreatedUser { get; set; }
         public DateTime CreatedDateTimeUtc { get; set; }
     }
 }
