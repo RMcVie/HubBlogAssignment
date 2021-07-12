@@ -13,7 +13,7 @@ namespace HubBlogAssignment.Tests.DataAccessTests
     public class PostDataAccessTests : BaseDataAccessTest
     {
         [Fact]
-        public async Task PostsAreRetrieved()
+        public async Task AllPostsAreRetrieved()
         {
             var posts = await dataAccess.GetPosts().ConfigureAwait(false);
             posts.Count().Should().Be(2);
@@ -46,7 +46,7 @@ namespace HubBlogAssignment.Tests.DataAccessTests
         }
 
         [Fact]
-        public async Task PostIsCreated()
+        public async Task NewPostIsCreated()
         {
             var post = FakeDataGenerator.FakePosts().Generate(1).Single();
             await dataAccess.CreatePost(post, new Guid("11111111-1111-1111-1111-111111111111")).ConfigureAwait(false);

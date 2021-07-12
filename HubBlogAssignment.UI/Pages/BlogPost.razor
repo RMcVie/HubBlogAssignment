@@ -12,5 +12,5 @@ else
         <MudText Typo="Typo.subtitle2" Color="Color.Dark" Class="mb-4 ml-4">@($"{Post.CreatedDateTimeUtc:f}")</MudText>
         <MudText Typo="Typo.body1" Color="Color.Dark" Class="mb-4 ml-4">@Post.Content</MudText>
     </MudPaper>
-    <CommentFeed PostId="Post.PostId" />
+    <CommentFeed PostId="Post.Id" />
 }

@@ -16,6 +16,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using HubBlogAssignment.Data;
 using Microsoft.AspNetCore.Authentication.AzureADB2C.UI;
+using Microsoft.EntityFrameworkCore;
 
 namespace HubBlogAssignment.Api
 {
@@ -33,8 +34,6 @@ namespace HubBlogAssignment.Api
         {
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAdB2C"));
-            //services.AddAuthentication(AzureADB2CDefaults.BearerAuthenticationScheme)
-            //    .AddAzureADB2CBearer(opts => Configuration.Bind("AzureAdB2C", opts));
 
             services.AddCors(opts =>
             {
@@ -44,8 +43,9 @@ namespace HubBlogAssignment.Api
                 });
             });
 
-            services.AddSingleton<IDataAccess, DataAccess>();
+            services.AddTransient<IDataAccess, DataAccess>();
             services.AddAutoMapper(typeof(Program));
+            services.AddDbContext<HubDbContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("Hub")));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

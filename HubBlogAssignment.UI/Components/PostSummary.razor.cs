@@ -15,7 +15,7 @@ namespace HubBlogAssignment.UI.Components
 
         protected async Task OnClick()
         {
-            await OnPostClickCallback.InvokeAsync(Post.PostId);
+            await OnPostClickCallback.InvokeAsync(Post.Id);
         }
     }
 }

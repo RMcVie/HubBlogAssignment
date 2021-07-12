@@ -40,7 +40,7 @@ namespace HubBlogAssignment.Tests.DataAccessTests
         }
 
         [Fact]
-        public async Task CommentIsCreated()
+        public async Task NewCommentIsCreated()
         {
             var comment = FakeDataGenerator.FakeComments(DateTime.UtcNow).Generate(1).Single();
             await dataAccess.CreateComment(1, comment, new Guid("11111111-1111-1111-1111-111111111111")).ConfigureAwait(false);
