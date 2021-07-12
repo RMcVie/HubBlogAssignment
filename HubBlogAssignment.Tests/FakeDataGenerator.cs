@@ -21,20 +21,19 @@ namespace HubBlogAssignment.Data
                 .RuleFor(p => p.Content, f => f.Lorem.Paragraphs())
                 .RuleFor(p => p.CreatedDateTimeUtc, f => f.Date.Recent())
                 .Ignore(p => p.Id)
-                .Ignore(p=>p.User)
-                .Ignore(p=>p.Categories)
-                .Ignore(p => p.Comments);
+                .Ignore(p => p.User)
+                .Ignore(p => p.Categories)
+                .Ignore(p => p.VotesCount);
         }
 
         public static Faker<Comment> FakeComments(DateTime postCreateTimeUtc)
         {
             return new Faker<Comment>()
                 .StrictMode(true)
-                .RuleFor(c => c.Content, f => f.Lorem.Paragraphs())
+                .RuleFor(c => c.Content, f => f.Lorem.Sentence())
                 .RuleFor(c => c.CreatedDateTimeUtc, f => f.Date.Between(postCreateTimeUtc, DateTime.UtcNow))
                 .Ignore(p => p.Id)
-                .RuleFor(c => c.Score, f => f.Random.Int(0, 100))
-                .Ignore(c => c.Post)
+                .Ignore(c => c.VotesCount)
                 .Ignore(c => c.User);
         }
 
@@ -58,6 +57,17 @@ namespace HubBlogAssignment.Data
                 .Ignore(u => u.Id)
                 .RuleFor(x => x.CreatedDateTimeUtc, f => f.Date.Past())
                 .Ignore(x => x.Posts);
+        }
+
+        public static Faker<Vote> FakeVotes()
+        {
+            return new Faker<Vote>()
+                .StrictMode(true)
+                .RuleFor(v => v.CreatedDateTimeUtc, f => f.Date.Past())
+                .Ignore(v => v.Comment)
+                .Ignore(v => v.Id)
+                .Ignore(v => v.Post)
+                .Ignore(v => v.User);
         }
 
         //public static IEnumerable<Post> FakePostsIncludingSubEntities()

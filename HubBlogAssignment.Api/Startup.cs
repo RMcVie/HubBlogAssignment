@@ -17,6 +17,9 @@ using Microsoft.OpenApi.Models;
 using HubBlogAssignment.Data;
 using Microsoft.AspNetCore.Authentication.AzureADB2C.UI;
 using Microsoft.EntityFrameworkCore;
+using HubBlogAssignment.Api.Filters;
+using HubBlogAssignment.Data.DataAccess;
+using HubBlogAssignment.Data.Interfaces;
 
 namespace HubBlogAssignment.Api
 {
@@ -43,11 +46,16 @@ namespace HubBlogAssignment.Api
                 });
             });
 
-            services.AddTransient<IDataAccess, DataAccess>();
+            services.AddTransient<IPostAccess, PostAccess>();
+            services.AddTransient<ICommentAccess, CommentAccess>();
+            services.AddTransient<ICategoryAccess, CategoryAccess>();
+            services.AddTransient<IUserAccess, UserAccess>();
             services.AddAutoMapper(typeof(Program));
             services.AddDbContext<HubDbContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("Hub")));
 
-            services.AddControllers();
+            services.AddScoped<NewUserFilter>();
+            services.AddControllers(opts => opts.Filters.Add(typeof(NewUserFilter)));
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HubBlogAssignment.Api", Version = "v1" });

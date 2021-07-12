@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using HubBlogAssignment.Api.ExtensionMethods;
 using HubBlogAssignment.Data;
+using HubBlogAssignment.Data.Entities;
 using HubBlogAssignment.Shared;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,10 +18,10 @@ namespace HubBlogAssignment.Api.Controllers
     [Route("[controller]")]
     public class PostsController : ControllerBase
     {
-        private readonly IDataAccess dataAccess;
+        private readonly IPostAccess dataAccess;
         private readonly IMapper mapper;
 
-        public PostsController(IDataAccess dataAccess, IMapper mapper)
+        public PostsController(IPostAccess dataAccess, IMapper mapper)
         {
             this.dataAccess = dataAccess;
             this.mapper = mapper;
@@ -41,12 +43,13 @@ namespace HubBlogAssignment.Api.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Post(PostDmlDto post)
+        public async Task<IActionResult> CreatePost(PostDmlDto post)
         {
             if (post == null)
                 return BadRequest();
 
-            var createdPost = await dataAccess.CreatePost(mapper.Map<Post>(post), Guid.NewGuid()).ConfigureAwait(false);
+            var createdPost = mapper.Map<Post>(post);
+            await dataAccess.CreatePost(createdPost, HttpContext.User.GetAadObjectId()).ConfigureAwait(false);
             return CreatedAtAction(nameof(Get), new { id = createdPost.Id }, mapper.Map<PostReadDto>(createdPost));
         }
     }

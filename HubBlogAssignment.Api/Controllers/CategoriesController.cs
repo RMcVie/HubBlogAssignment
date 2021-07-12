@@ -16,10 +16,10 @@ namespace HubBlogAssignment.Api.Controllers
     [Route("[controller]")]
     public class CategoriesController: ControllerBase
     {
-        private readonly IDataAccess dataAccess;
+        private readonly ICategoryAccess dataAccess;
         private readonly IMapper mapper;
 
-        public CategoriesController(IDataAccess dataAccess, IMapper mapper)
+        public CategoriesController(ICategoryAccess dataAccess, IMapper mapper)
         {
             this.dataAccess = dataAccess;
             this.mapper = mapper;
@@ -39,7 +39,8 @@ namespace HubBlogAssignment.Api.Controllers
             if (category == null)
                 return BadRequest();
 
-            var createdCategory = await dataAccess.CreateCategory(mapper.Map<Category>(category)).ConfigureAwait(false);
+            var createdCategory = mapper.Map<Category>(category);
+            await dataAccess.CreateCategory(createdCategory).ConfigureAwait(false);
             return CreatedAtAction(nameof(Post), new { id = createdCategory.Id }, mapper.Map<CategoryReadDto>(createdCategory));
         }
     }

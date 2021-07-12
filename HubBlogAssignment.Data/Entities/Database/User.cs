@@ -11,13 +11,13 @@ namespace HubBlogAssignment.Data.Entities
     {
         public User()
         {
-            Comments = new List<Comment>();
-            Posts = new List<Post>();
+            Comments = new List<CommentDb>();
+            Posts = new List<PostDb>();
         }
 
         public string DisplayName { get; set; }
         public Guid AADObjectId { get; set; }
-        public ICollection<Comment> Comments { get; set; }
-        public ICollection<Post> Posts { get; set; }
+        public ICollection<CommentDb> Comments { get; set; }
+        public ICollection<PostDb> Posts { get; set; }
     }
 }

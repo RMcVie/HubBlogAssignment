@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace HubBlogAssignment.Data.Entities
 {
-    public class Comment : BaseEntity
+    public class Vote : BaseEntity
     {
-        public string Content { get; set; }
         public User User { get; set; }
-        public int VotesCount { get; set; }
+        public PostDb Post { get; set; }
+        public CommentDb Comment { get; set; }
     }
 }

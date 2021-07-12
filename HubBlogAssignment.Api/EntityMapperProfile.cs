@@ -1,4 +1,5 @@
 using AutoMapper;
+using HubBlogAssignment.Data.Entities;
 using HubBlogAssignment.Shared;
 using System;
 using System.Collections.Generic;
@@ -12,19 +13,22 @@ namespace HubBlogAssignment.Api
     {
         public EntityMapperProfile()
         {
-            CreateMap<Post, PostReadDto>().ReverseMap();
+            CreateMap<Post, PostReadDto>()
+                .ReverseMap();
             CreateMap<PostDmlDto, Post>()
-                .ForMember(d=>d.Id, opts => opts.Ignore())
                 .ForMember(d=>d.CreatedDateTimeUtc, opts => opts.Ignore())
-                .ForMember(d=>d.Comments, opts => opts.Ignore())
                 .ForMember(d=>d.User, opts => opts.Ignore())
-                .ForMember(d=>d.Categories, opts => opts.Ignore());
-            CreateMap<Comment, CommentReadDto>().ReverseMap();
+                .ForMember(d=>d.VotesCount, opts => opts.Ignore())
+                .ForMember(d=>d.Categories, opts => opts.Ignore())
+                .ForMember(d => d.Id, opts => opts.Ignore());
+            CreateMap<Comment, CommentReadDto>()
+                .ForMember(d=>d.Score, opts => opts.MapFrom(src => src.VotesCount))
+                .ReverseMap();
             CreateMap<CommentDmlDto, Comment>()
-                .ForMember(d => d.Id, opts => opts.Ignore())
                 .ForMember(d => d.CreatedDateTimeUtc, opts => opts.Ignore())
-                .ForMember(d => d.Score, opts => opts.Ignore())
-                .ForMember(d=>d.User, opts => opts.Ignore());
+                .ForMember(d => d.User, opts => opts.Ignore())
+                .ForMember(d => d.VotesCount, opts => opts.Ignore())
+                .ForMember(d => d.Id, opts => opts.Ignore());
         }
     }
 }

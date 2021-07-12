@@ -10,3 +10,4 @@ Make repo public
 remove filters code
 Model Validations ModelState
 Explore using in memory so the tests are more unit, rather than integration
+Voting Validation. I.e. no multiple votes checks.

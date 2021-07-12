@@ -11,10 +11,10 @@ namespace HubBlogAssignment.Data.Entities
     {
         public Category()
         {
-            Posts = new List<Post>();
+            Posts = new List<PostDb>();
         }
 
         public string Name { get; set; }
-        public ICollection<Post> Posts { get; set; }
+        public ICollection<PostDb> Posts { get; set; }
     }
 }
