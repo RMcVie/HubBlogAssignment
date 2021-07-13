@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using HubBlogAssignment.Data;
-using HubBlogAssignment.Data.Entities;
 using HubBlogAssignment.Shared;
 using Microsoft.EntityFrameworkCore;
 using System;

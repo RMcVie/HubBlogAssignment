@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using AutoMapper;
 using HubBlogAssignment.Api.ExtensionMethods;
-using HubBlogAssignment.Data;
 using HubBlogAssignment.Data.DataAccess;
-using HubBlogAssignment.Data.Entities;
-using HubBlogAssignment.Shared;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Microsoft.Identity.Web.Resource;
 
 
 namespace HubBlogAssignment.Api.Controllers

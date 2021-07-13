@@ -1,6 +1,5 @@
 using AutoMapper;
 using HubBlogAssignment.Api;
-using System;
 using Xunit;
 
 namespace HubBlogAssignment.Tests

@@ -2,9 +2,6 @@
 using HubBlogAssignment.Data.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace HubBlogAssignment.Data.DataAccess
