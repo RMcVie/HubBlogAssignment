@@ -18,14 +18,16 @@ namespace HubBlogAssignment.Data.DataAccess
             this.context = context;
         }
 
-        public async Task CreateComment(int postId, Comment comment, Guid userObjectId)
+        public async Task<int> CreateComment(int postId, Comment comment, Guid userObjectId)
         {
             var user = context.Set<User>().Single(u => u.AadObjectId == userObjectId);
             var post = await context.Set<PostDb>().FindAsync(postId).ConfigureAwait(false);
 
-            post.Comments.Add(new CommentDb { Content = comment.Content, Post = post, User = user});
+            var commentDb = new CommentDb {Content = comment.Content, Post = post, User = user};
+            post.Comments.Add(commentDb);
 
             await context.SaveChangesAsync().ConfigureAwait(false);
+            return commentDb.Id;
         }
 
         public async Task<IEnumerable<Comment>> GetComments(int postId, OrderBy orderBy)

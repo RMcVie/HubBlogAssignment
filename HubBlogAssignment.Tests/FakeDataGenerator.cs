@@ -7,7 +7,6 @@ namespace HubBlogAssignment.Tests
 {
     public static class FakeDataGenerator
     {
-        public static readonly string[] Categories = { "Tech", "Finance", "Sports" };
         public static Faker<Post> FakePosts()
         {
             return new Faker<Post>()
@@ -39,7 +38,7 @@ namespace HubBlogAssignment.Tests
                 .StrictMode(true)
                 .Ignore(u => u.Id)
                 .RuleFor(u => u.DisplayName, f => f.Name.FullName())
-                .RuleFor(u => u.AadObjectId, f => Guid.NewGuid())
+                .RuleFor(u => u.AadObjectId, _ => Guid.NewGuid())
                 .Ignore(u => u.Comments)
                 .Ignore(u => u.Posts)
                 .RuleFor(x => x.CreatedDateTimeUtc, f => f.Date.Past());

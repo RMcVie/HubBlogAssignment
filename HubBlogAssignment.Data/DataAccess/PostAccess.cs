@@ -16,7 +16,7 @@ namespace HubBlogAssignment.Data.DataAccess
         {
             this.context = context;
         }
-        public async Task CreatePost(Post post, Guid userObjectId)
+        public async Task<int> CreatePost(Post post, Guid userObjectId)
         {
             var postDb = new PostDb
             {
@@ -28,6 +28,7 @@ namespace HubBlogAssignment.Data.DataAccess
             };
             context.Set<PostDb>().Add(postDb);
             await context.SaveChangesAsync().ConfigureAwait(false);
+            return postDb.Id;
         }
 
         public async Task<Post> GetPost(int id)

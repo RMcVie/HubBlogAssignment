@@ -8,6 +8,7 @@ namespace HubBlogAssignment.Data.Entities.Database
         {
             Votes = new HashSet<Vote>();
         }
+
         public string Content { get; set; }
         public User User { get; set; }
         public PostDb Post { get; set; }

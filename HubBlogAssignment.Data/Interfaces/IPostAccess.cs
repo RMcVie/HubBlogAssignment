@@ -9,6 +9,6 @@ namespace HubBlogAssignment.Data.Interfaces
     {
         Task<Post> GetPost(int id);
         Task<IEnumerable<Post>> GetPosts();
-        Task CreatePost(Post post, Guid userObjectId);
+        Task<int> CreatePost(Post post, Guid userObjectId);
     }
 }

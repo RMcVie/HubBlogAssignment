@@ -9,6 +9,6 @@ namespace HubBlogAssignment.Data.Interfaces
     public interface ICommentAccess
     {
         Task<IEnumerable<Comment>> GetComments(int postId, OrderBy orderBy);
-        Task CreateComment(int postId, Comment comment, Guid userObjectId);
+        Task<int> CreateComment(int postId, Comment comment, Guid userObjectId);
     }
 }

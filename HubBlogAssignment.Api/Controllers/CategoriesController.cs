@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using HubBlogAssignment.Data.Entities;
+using HubBlogAssignment.Data.Entities.Database;
+using HubBlogAssignment.Data.Errors;
 using HubBlogAssignment.Data.Interfaces;
 using HubBlogAssignment.Shared.DML;
 using HubBlogAssignment.Shared.Read;
@@ -36,10 +38,17 @@ namespace HubBlogAssignment.Api.Controllers
         {
             if (category == null)
                 return BadRequest();
-
+            
             var createdCategory = mapper.Map<Category>(category);
-            await dataAccess.CreateCategory(createdCategory).ConfigureAwait(false);
-            return CreatedAtAction(nameof(Get), new { id = createdCategory.Id }, mapper.Map<CategoryReadDto>(createdCategory));
+            try
+            {
+                await dataAccess.CreateCategory(createdCategory).ConfigureAwait(false);
+                return CreatedAtAction(nameof(Get), new {id = createdCategory.Id}, mapper.Map<CategoryReadDto>(createdCategory));
+            }
+            catch (EntityAlreadyExistsException)
+            {
+                return Conflict(new {message = "Already Exists"});
+            }
         }
     }
 }

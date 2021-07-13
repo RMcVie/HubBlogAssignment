@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using HubBlogAssignment.Data.Entities.Database;
 
-namespace HubBlogAssignment.Data.Entities
+namespace HubBlogAssignment.Data.Entities.Database
 {
     public class Category: BaseEntity
     {

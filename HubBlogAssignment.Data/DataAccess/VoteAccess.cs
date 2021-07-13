@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HubBlogAssignment.Data.Entities.Database;
+using HubBlogAssignment.Data.Errors;
 using HubBlogAssignment.Data.Interfaces;
 
 namespace HubBlogAssignment.Data.DataAccess
@@ -21,7 +22,11 @@ namespace HubBlogAssignment.Data.DataAccess
         {
             var comment = await context.Set<CommentDb>().FindAsync(commentId).ConfigureAwait(false);
             var user = await context.Set<User>().SingleAsync(u => u.AadObjectId == userObjectId).ConfigureAwait(false);
-            context.Set<Vote>().Add(new Vote { Comment = comment, User = user });
+            var vote = new Vote {Comment = comment, User = user};
+
+            await EnsureVoteDoesNotExist(vote);
+
+            context.Set<Vote>().Add(vote);
             await context.SaveChangesAsync();
         }
 
@@ -29,32 +34,41 @@ namespace HubBlogAssignment.Data.DataAccess
         {
             var post = await context.Set<PostDb>().FindAsync(postId).ConfigureAwait(false);
             var user = await context.Set<User>().SingleAsync(u => u.AadObjectId == userObjectId).ConfigureAwait(false);
-            context.Set<Vote>().Add(new Vote { Post = post, User = user });
+            var vote = new Vote { Post = post, User = user };
+            
+            await EnsureVoteDoesNotExist(vote);
+
+            context.Set<Vote>().Add(vote);
             await context.SaveChangesAsync();
         }
 
         public async Task DeleteVoteForComment(int commentId, Guid userObjectId)
         {
-            var vote = await context.Set<Vote>().SingleAsync(v => v.Comment.Id == commentId && v.User.AadObjectId == userObjectId).ConfigureAwait(false);
+            var vote = await context.Set<Vote>().SingleOrDefaultAsync(v => v.Comment.Id == commentId && v.User.AadObjectId == userObjectId).ConfigureAwait(false);
+
+            if (vote == null)
+                throw new EntityDoesNotExistException(new Vote().GetType());
+
             context.Set<Vote>().Remove(vote);
             await context.SaveChangesAsync();
         }
 
         public async Task DeleteVoteForPost(int postId, Guid userObjectId)
         {
-            var vote = await context.Set<Vote>().SingleAsync(v => v.Post.Id == postId && v.User.AadObjectId == userObjectId).ConfigureAwait(false);
+            var vote = await context.Set<Vote>().SingleOrDefaultAsync(v => v.Post.Id == postId && v.User.AadObjectId == userObjectId).ConfigureAwait(false);
+
+            if (vote == null)
+                throw new EntityDoesNotExistException(new Vote().GetType());
+
             context.Set<Vote>().Remove(vote);
             await context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Vote>> GetVotesForComment(int commentId)
+        private async Task EnsureVoteDoesNotExist(Vote vote)
         {
-            return await context.Set<Vote>().Where(v => v.Comment.Id == commentId).ToListAsync().ConfigureAwait(false);
-        }
-
-        public async Task<IEnumerable<Vote>> GetVotesForPost(int postId)
-        {
-            return await context.Set<Vote>().Where(v => v.Post.Id == postId).ToListAsync().ConfigureAwait(false);
+            var existingVote = await context.Set<Vote>().SingleOrDefaultAsync(v=>v.User.Id == vote.User.Id && (vote.Post == null? v.Comment.Id == vote.Comment.Id : v.Post.Id == vote.Post.Id));
+            if (existingVote != null)
+                throw new EntityAlreadyExistsException(existingVote);
         }
     }
 }

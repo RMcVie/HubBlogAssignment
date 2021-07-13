@@ -51,10 +51,12 @@ namespace HubBlogAssignment.Tests.DataAccessTests
         public async Task NewCommentIsCreated()
         {
             var comment = FakeDataGenerator.FakeComments(DateTime.UtcNow).Generate(1).Single();
-            await dataAccess.CreateComment(1, comment, new Guid("11111111-1111-1111-1111-111111111111")).ConfigureAwait(false);
+            var id = await dataAccess.CreateComment(1, comment, new Guid("11111111-1111-1111-1111-111111111111")).ConfigureAwait(false);
 
             await using var context = new HubDbContext(DbContextOptions);
             var insertedComment = await context.Set<CommentDb>().Include(c => c.Post).Include(c => c.User).SingleAsync(c => c.Id == 4).ConfigureAwait(false);
+
+            insertedComment.Id.Should().Be(id);
             insertedComment.Content.Should().Be(comment.Content);
             insertedComment.Post.Id.Should().Be(1);
             insertedComment.User.AadObjectId.Should().Be("11111111-1111-1111-1111-111111111111");

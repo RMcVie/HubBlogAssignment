@@ -46,8 +46,9 @@ namespace HubBlogAssignment.Api.Controllers
                 return BadRequest();
 
             var createdPost = mapper.Map<Post>(post);
-            await dataAccess.CreatePost(createdPost, HttpContext.User.GetAadObjectId()).ConfigureAwait(false);
-            return CreatedAtAction(nameof(Get), new { id = createdPost.Id }, mapper.Map<PostReadDto>(createdPost));
+            var id = await dataAccess.CreatePost(createdPost, HttpContext.User.GetAadObjectId()).ConfigureAwait(false);
+
+            return CreatedAtAction(nameof(Get), new { id }, mapper.Map<PostReadDto>(createdPost));
         }
     }
 }

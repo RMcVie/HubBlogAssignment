@@ -12,3 +12,4 @@ Model Validations ModelState
 Explore using in memory so the tests are more unit, rather than integration
 Voting Validation. I.e. no multiple votes checks.
 Get Database diagram from SQL
+Sort out if Access layer should return inserted entity

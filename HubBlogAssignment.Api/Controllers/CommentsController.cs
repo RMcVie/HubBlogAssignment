@@ -40,9 +40,9 @@ namespace HubBlogAssignment.Api.Controllers
                 return BadRequest();
 
             var createdComment = mapper.Map<Comment>(comment);
-            await dataAccess.CreateComment(postId, createdComment, HttpContext.User.GetAadObjectId()).ConfigureAwait(false);
+            var id = await dataAccess.CreateComment(postId, createdComment, HttpContext.User.GetAadObjectId()).ConfigureAwait(false);
 
-            return CreatedAtAction(nameof(Get), new { id = createdComment.Id }, mapper.Map<CommentReadDto>(createdComment));
+            return CreatedAtAction(nameof(Get), new { id }, mapper.Map<CommentReadDto>(createdComment));
         }
     }
 }
