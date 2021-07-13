@@ -1,4 +1,6 @@
-﻿namespace HubBlogAssignment.Data.Entities
+﻿using HubBlogAssignment.Data.Entities.Database;
+
+namespace HubBlogAssignment.Data.Entities
 {
     public class Comment : BaseEntity
     {

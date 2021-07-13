@@ -4,7 +4,10 @@ using AutoMapper;
 using HubBlogAssignment.Api.ExtensionMethods;
 using HubBlogAssignment.Data;
 using HubBlogAssignment.Data.Entities;
+using HubBlogAssignment.Data.Interfaces;
 using HubBlogAssignment.Shared;
+using HubBlogAssignment.Shared.DML;
+using HubBlogAssignment.Shared.Read;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,7 +33,7 @@ namespace HubBlogAssignment.Api.Controllers
             return mapper.Map<IEnumerable<PostReadDto>>(posts);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<PostReadDto> Get(int id)
         {
             var posts = await dataAccess.GetPost(id).ConfigureAwait(false);

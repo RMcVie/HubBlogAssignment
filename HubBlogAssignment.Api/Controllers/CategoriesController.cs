@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using HubBlogAssignment.Data;
 using HubBlogAssignment.Data.Entities;
+using HubBlogAssignment.Data.Interfaces;
 using HubBlogAssignment.Shared.DML;
 using HubBlogAssignment.Shared.Read;
 using Microsoft.AspNetCore.Authorization;
@@ -39,7 +40,7 @@ namespace HubBlogAssignment.Api.Controllers
 
             var createdCategory = mapper.Map<Category>(category);
             await dataAccess.CreateCategory(createdCategory).ConfigureAwait(false);
-            return CreatedAtAction(nameof(Post), new { id = createdCategory.Id }, mapper.Map<CategoryReadDto>(createdCategory));
+            return CreatedAtAction(nameof(Get), new { id = createdCategory.Id }, mapper.Map<CategoryReadDto>(createdCategory));
         }
     }
 }

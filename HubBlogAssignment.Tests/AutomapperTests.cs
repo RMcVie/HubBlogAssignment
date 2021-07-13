@@ -4,7 +4,7 @@ using Xunit;
 
 namespace HubBlogAssignment.Tests
 {
-    public class AutmapperTests
+    public class AutoMapperTests
     {
         [Fact]
         public void AutoMapperSetupIsValid()

@@ -3,11 +3,9 @@ using HubBlogAssignment.Data.Interfaces;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Threading.Tasks;
 
-
-// I would not do this under normal cirumstances.
+// I would not do this under normal circumstances.
 // User creation should be it's own isolated process (Utilizing Azure B2C Custom Policies).
 // But for ease of a demo, I'll do it like this!
-// Plus hey, at least it shows I know how to use action filters!
 
 namespace HubBlogAssignment.Api.Filters
 {

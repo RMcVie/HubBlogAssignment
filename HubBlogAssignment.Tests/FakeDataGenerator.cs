@@ -1,8 +1,9 @@
+using System;
 using Bogus;
 using HubBlogAssignment.Data.Entities;
-using System;
+using HubBlogAssignment.Data.Entities.Database;
 
-namespace HubBlogAssignment.Data
+namespace HubBlogAssignment.Tests
 {
     public static class FakeDataGenerator
     {

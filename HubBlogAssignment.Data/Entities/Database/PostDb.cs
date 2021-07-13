@@ -1,7 +1,6 @@
-using HubBlogAssignment.Data.Entities;
 using System.Collections.Generic;
 
-namespace HubBlogAssignment.Shared
+namespace HubBlogAssignment.Data.Entities.Database
 {
     public class PostDb: BaseEntity
     {

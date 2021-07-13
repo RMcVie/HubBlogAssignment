@@ -1,9 +1,9 @@
-﻿using HubBlogAssignment.Data.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using HubBlogAssignment.Data.Entities.Database;
 
-namespace HubBlogAssignment.Data.DataAccess
+namespace HubBlogAssignment.Data.Interfaces
 {
     public interface IVoteAccess
     {
