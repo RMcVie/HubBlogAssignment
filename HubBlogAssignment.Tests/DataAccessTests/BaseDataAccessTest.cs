@@ -3,7 +3,6 @@ using HubBlogAssignment.Data.Entities;
 using HubBlogAssignment.Shared;
 using Microsoft.EntityFrameworkCore;
 using System;
-using HubBlogAssignment.Data.Entities.Database;
 using Xunit;
 
 namespace HubBlogAssignment.Tests.DataAccessTests

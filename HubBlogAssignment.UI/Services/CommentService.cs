@@ -5,8 +5,6 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using HubBlogAssignment.Shared.DML;
-using HubBlogAssignment.Shared.Read;
 
 namespace HubBlogAssignment.UI.Services
 {

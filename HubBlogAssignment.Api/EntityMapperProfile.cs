@@ -1,8 +1,6 @@
 using AutoMapper;
 using HubBlogAssignment.Data.Entities;
 using HubBlogAssignment.Shared;
-using HubBlogAssignment.Shared.DML;
-using HubBlogAssignment.Shared.Read;
 
 namespace HubBlogAssignment.Api
 {

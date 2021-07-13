@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using HubBlogAssignment.Data.Entities;
-using HubBlogAssignment.Data.Interfaces;
+﻿using HubBlogAssignment.Data.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace HubBlogAssignment.Data.DataAccess
+namespace HubBlogAssignment.Data
 {
     public class CategoryAccess : ICategoryAccess
     {

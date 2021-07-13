@@ -5,9 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using HubBlogAssignment.Data.DataAccess;
-using HubBlogAssignment.Data.Entities.Database;
-using HubBlogAssignment.Data.Interfaces;
 using Xunit;
 
 namespace HubBlogAssignment.Tests.DataAccessTests

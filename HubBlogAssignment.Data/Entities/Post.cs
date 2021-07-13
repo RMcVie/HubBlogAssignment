@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using HubBlogAssignment.Data.Entities.Database;
 
 namespace HubBlogAssignment.Data.Entities
 {

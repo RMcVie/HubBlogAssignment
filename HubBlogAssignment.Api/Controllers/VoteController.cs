@@ -2,7 +2,6 @@
 using AutoMapper;
 using HubBlogAssignment.Api.ExtensionMethods;
 using HubBlogAssignment.Data.DataAccess;
-using HubBlogAssignment.Data.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

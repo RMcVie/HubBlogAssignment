@@ -1,4 +1,6 @@
-﻿namespace HubBlogAssignment.Data.Entities.Database
+﻿using HubBlogAssignment.Shared;
+
+namespace HubBlogAssignment.Data.Entities
 {
     public class Vote : BaseEntity
     {

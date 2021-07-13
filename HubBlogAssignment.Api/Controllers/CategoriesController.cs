@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using HubBlogAssignment.Data;
 using HubBlogAssignment.Data.Entities;
-using HubBlogAssignment.Data.Interfaces;
 using HubBlogAssignment.Shared.DML;
 using HubBlogAssignment.Shared.Read;
 using Microsoft.AspNetCore.Authorization;

@@ -5,8 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HubBlogAssignment.Data.Entities.Database;
-using HubBlogAssignment.Data.Interfaces;
 
 namespace HubBlogAssignment.Data.DataAccess
 {
