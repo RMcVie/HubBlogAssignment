@@ -1,5 +1,4 @@
-﻿using HubBlogAssignment.Data.Entities;
-using HubBlogAssignment.Data.Interfaces;
+﻿using HubBlogAssignment.Data.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
@@ -17,10 +16,10 @@ namespace HubBlogAssignment.Data.DataAccess
         }
         public async Task EnsureUserExists(Guid objectId, string displayName)
         {
-            var existingUser = await context.Set<User>().SingleOrDefaultAsync(u => u.AADObjectId == objectId).ConfigureAwait(false);
+            var existingUser = await context.Set<User>().SingleOrDefaultAsync(u => u.AadObjectId == objectId).ConfigureAwait(false);
             if (existingUser != null)
                 return;
-            context.Set<User>().Add(new User { AADObjectId = objectId, DisplayName = displayName });
+            context.Set<User>().Add(new User { AadObjectId = objectId, DisplayName = displayName });
             await context.SaveChangesAsync();
         }
     }

@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using HubBlogAssignment.Api.ExtensionMethods;
-using HubBlogAssignment.Data;
 using HubBlogAssignment.Data.Entities;
 using HubBlogAssignment.Data.Interfaces;
 using HubBlogAssignment.Shared;

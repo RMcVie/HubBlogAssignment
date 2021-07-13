@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using HubBlogAssignment.Data;
-using HubBlogAssignment.Shared;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
@@ -17,7 +16,7 @@ namespace HubBlogAssignment.Tests.DataAccessTests
         private readonly IPostAccess dataAccess;
         public PostDataAccessTests()
         {
-            dataAccess = new PostAccess(new HubDbContext(dbContextOptions));
+            dataAccess = new PostAccess(new HubDbContext(DbContextOptions));
         }
 
         [Fact]
@@ -59,13 +58,13 @@ namespace HubBlogAssignment.Tests.DataAccessTests
             var post = FakeDataGenerator.FakePosts().Generate(1).Single();
             await dataAccess.CreatePost(post, new Guid("11111111-1111-1111-1111-111111111111")).ConfigureAwait(false);
 
-            using var context = new HubDbContext(dbContextOptions);
+            using var context = new HubDbContext(DbContextOptions);
             var insertedPost = await context.Set<PostDb>().Include(p => p.User).SingleAsync(p => p.Id == 4).ConfigureAwait(false);
             insertedPost.Summary.Should().Be(post.Summary);
             insertedPost.Content.Should().Be(post.Content);
             insertedPost.Title.Should().Be(post.Title);
             insertedPost.CreatedDateTimeUtc.Should().BeCloseTo(DateTime.UtcNow, 1000);
-            insertedPost.User.AADObjectId.Should().Be("11111111-1111-1111-1111-111111111111");
+            insertedPost.User.AadObjectId.Should().Be("11111111-1111-1111-1111-111111111111");
         }
     }
 }

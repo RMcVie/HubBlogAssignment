@@ -1,6 +1,5 @@
 ﻿using HubBlogAssignment.Data;
 using HubBlogAssignment.Data.Entities;
-using HubBlogAssignment.Shared;
 using Microsoft.EntityFrameworkCore;
 using System;
 using HubBlogAssignment.Data.Entities.Database;
@@ -12,26 +11,26 @@ namespace HubBlogAssignment.Tests.DataAccessTests
     public abstract class BaseDataAccessTest
     {
         protected const string ConnectionString = "Server=localhost;Database=HubBlogAssignmentTest;Integrated Security=true";
-        protected readonly DbContextOptions<HubDbContext> dbContextOptions;
+        protected readonly DbContextOptions<HubDbContext> DbContextOptions;
 
-        public BaseDataAccessTest()
+        protected BaseDataAccessTest()
         {
-            dbContextOptions = new DbContextOptionsBuilder<HubDbContext>().UseSqlServer(ConnectionString).Options;
+            DbContextOptions = new DbContextOptionsBuilder<HubDbContext>().UseSqlServer(ConnectionString).Options;
             InitializeDatabase();
         }
 
         private void InitializeDatabase()
         {
-            using var context = new HubDbContext(dbContextOptions);
+            using var context = new HubDbContext(DbContextOptions);
             context.Database.ExecuteSqlRaw("TRUNCATE TABLE [Vote]; TRUNCATE TABLE [PostCategory]; DELETE FROM [Comment]; DELETE FROM [Post]; DELETE FROM [Category]; DELETE FROM [User];");
             context.Database.ExecuteSqlRaw("DBCC CHECKIDENT ('Post', RESEED, 0);");
             context.Database.ExecuteSqlRaw("DBCC CHECKIDENT ('User', RESEED, 0);");
             context.Database.ExecuteSqlRaw("DBCC CHECKIDENT ('Category', RESEED, 0);");
             context.Database.ExecuteSqlRaw("DBCC CHECKIDENT ('Comment', RESEED, 0);");
 
-            var user1 = new User() { AADObjectId = new Guid("11111111-1111-1111-1111-111111111111"), DisplayName = "Test Display Name 1" };
-            var user2 = new User() { AADObjectId = new Guid("22222222-2222-2222-2222-222222222222"), DisplayName = "Test Display Name 2" };
-            var user3 = new User() { AADObjectId = new Guid("33333333-3333-3333-3333-333333333333"), DisplayName = "Test Display Name 3" };
+            var user1 = new User() { AadObjectId = new Guid("11111111-1111-1111-1111-111111111111"), DisplayName = "Test Display Name 1" };
+            var user2 = new User() { AadObjectId = new Guid("22222222-2222-2222-2222-222222222222"), DisplayName = "Test Display Name 2" };
+            var user3 = new User() { AadObjectId = new Guid("33333333-3333-3333-3333-333333333333"), DisplayName = "Test Display Name 3" };
 
             var category1 = new Category() { Name = "Finance" };
             var category2 = new Category() { Name = "Tech" };

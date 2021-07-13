@@ -20,7 +20,7 @@ namespace HubBlogAssignment.Data.DataAccess
 
         public async Task CreateComment(int postId, Comment comment, Guid userObjectId)
         {
-            var user = context.Set<User>().Single(u => u.AADObjectId == userObjectId);
+            var user = context.Set<User>().Single(u => u.AadObjectId == userObjectId);
             var post = await context.Set<PostDb>().FindAsync(postId).ConfigureAwait(false);
 
             post.Comments.Add(new CommentDb { Content = comment.Content, Post = post, User = user});

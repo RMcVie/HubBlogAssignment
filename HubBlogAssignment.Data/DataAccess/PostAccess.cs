@@ -24,7 +24,7 @@ namespace HubBlogAssignment.Data.DataAccess
                 Content=post.Content,
                 Summary=post.Summary,
                 Title=post.Title,
-                User= context.Set<User>().Single(u => u.AADObjectId == userObjectId)
+                User= context.Set<User>().Single(u => u.AadObjectId == userObjectId)
             };
             context.Set<PostDb>().Add(postDb);
             await context.SaveChangesAsync().ConfigureAwait(false);

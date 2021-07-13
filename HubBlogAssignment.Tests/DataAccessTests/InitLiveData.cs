@@ -1,5 +1,4 @@
 ﻿using HubBlogAssignment.Data;
-using HubBlogAssignment.Shared;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,9 +11,9 @@ namespace HubBlogAssignment.Tests.DataAccessTests
     public class InitLiveData : BaseDataAccessTest
     {
         [Fact]
-        public void temp()
+        public void Temp()
         {
-            using var context = new HubDbContext(dbContextOptions);
+            using var context = new HubDbContext(DbContextOptions);
             context.Database.ExecuteSqlRaw("TRUNCATE TABLE [Vote]; TRUNCATE TABLE [PostCategory]; DELETE FROM [Comment]; DELETE FROM [Post]; DELETE FROM [Category]; DELETE FROM [User];");
             context.Database.ExecuteSqlRaw("DBCC CHECKIDENT ('Post', RESEED, 0);");
             context.Database.ExecuteSqlRaw("DBCC CHECKIDENT ('User', RESEED, 0);");

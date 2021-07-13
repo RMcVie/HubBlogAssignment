@@ -39,7 +39,7 @@ namespace HubBlogAssignment.Tests
                 .StrictMode(true)
                 .Ignore(u => u.Id)
                 .RuleFor(u => u.DisplayName, f => f.Name.FullName())
-                .RuleFor(u => u.AADObjectId, f => Guid.NewGuid())
+                .RuleFor(u => u.AadObjectId, f => Guid.NewGuid())
                 .Ignore(u => u.Comments)
                 .Ignore(u => u.Posts)
                 .RuleFor(x => x.CreatedDateTimeUtc, f => f.Date.Past());

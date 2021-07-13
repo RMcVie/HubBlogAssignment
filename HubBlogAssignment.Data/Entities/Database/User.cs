@@ -12,7 +12,7 @@ namespace HubBlogAssignment.Data.Entities.Database
         }
 
         public string DisplayName { get; set; }
-        public Guid AADObjectId { get; set; }
+        public Guid AadObjectId { get; set; }
         public ICollection<CommentDb> Comments { get; set; }
         public ICollection<PostDb> Posts { get; set; }
     }
