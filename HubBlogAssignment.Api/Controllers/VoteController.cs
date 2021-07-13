@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using AutoMapper;
 using HubBlogAssignment.Api.ExtensionMethods;
 using HubBlogAssignment.Data.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -14,12 +13,10 @@ namespace HubBlogAssignment.Api.Controllers
     public class VotesController : ControllerBase
     {
         private readonly IVoteAccess dataAccess;
-        private readonly IMapper mapper;
 
-        public VotesController(IVoteAccess dataAccess, IMapper mapper)
+        public VotesController(IVoteAccess dataAccess)
         {
             this.dataAccess = dataAccess;
-            this.mapper = mapper;
         }
 
         [HttpDelete("Posts/{postId:int}")]

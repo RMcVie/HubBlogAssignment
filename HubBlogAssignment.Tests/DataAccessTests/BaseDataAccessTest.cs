@@ -1,8 +1,8 @@
-﻿using HubBlogAssignment.Data;
+﻿using System;
+using HubBlogAssignment.Data;
 using HubBlogAssignment.Data.Entities;
-using Microsoft.EntityFrameworkCore;
-using System;
 using HubBlogAssignment.Data.Entities.Database;
+using Microsoft.EntityFrameworkCore;
 using Xunit;
 
 namespace HubBlogAssignment.Tests.DataAccessTests
@@ -28,12 +28,12 @@ namespace HubBlogAssignment.Tests.DataAccessTests
             context.Database.ExecuteSqlRaw("DBCC CHECKIDENT ('Category', RESEED, 0);");
             context.Database.ExecuteSqlRaw("DBCC CHECKIDENT ('Comment', RESEED, 0);");
 
-            var user1 = new User() { AadObjectId = new Guid("11111111-1111-1111-1111-111111111111"), DisplayName = "Test Display Name 1" };
-            var user2 = new User() { AadObjectId = new Guid("22222222-2222-2222-2222-222222222222"), DisplayName = "Test Display Name 2" };
-            var user3 = new User() { AadObjectId = new Guid("33333333-3333-3333-3333-333333333333"), DisplayName = "Test Display Name 3" };
+            var user1 = new User { AadObjectId = new Guid("11111111-1111-1111-1111-111111111111"), DisplayName = "Test Display Name 1" };
+            var user2 = new User { AadObjectId = new Guid("22222222-2222-2222-2222-222222222222"), DisplayName = "Test Display Name 2" };
+            var user3 = new User { AadObjectId = new Guid("33333333-3333-3333-3333-333333333333"), DisplayName = "Test Display Name 3" };
 
-            var category1 = new Category() { Name = "Finance" };
-            var category2 = new Category() { Name = "Tech" };
+            var category1 = new Category { Name = "Finance" };
+            var category2 = new Category { Name = "Tech" };
 
             var vote1 = new Vote { CreatedDateTimeUtc = new DateTime(20, 1, 7), User = user1 };
             var vote2 = new Vote { CreatedDateTimeUtc = new DateTime(20, 1, 8), User = user3 };
@@ -41,11 +41,11 @@ namespace HubBlogAssignment.Tests.DataAccessTests
             var vote4 = new Vote { CreatedDateTimeUtc = new DateTime(20, 1, 10), User = user2 };
             var vote5 = new Vote { CreatedDateTimeUtc = new DateTime(20, 1, 11), User = user2 };
 
-            var comment1 = new CommentDb() { Content = "Test Content 1", CreatedDateTimeUtc = new DateTime(20, 1, 4), User = user1, Votes = new[] { vote5 } };
-            var comment2 = new CommentDb() { Content = "Test Content 2", CreatedDateTimeUtc = new DateTime(20, 1, 5), User = user1 };
-            var comment3 = new CommentDb() { Content = "Test Content 3", CreatedDateTimeUtc = new DateTime(20, 1, 6), User = user2, Votes = new[] { vote1, vote2} };
+            var comment1 = new CommentDb { Content = "Test Content 1", CreatedDateTimeUtc = new DateTime(20, 1, 4), User = user1, Votes = new[] { vote5 } };
+            var comment2 = new CommentDb { Content = "Test Content 2", CreatedDateTimeUtc = new DateTime(20, 1, 5), User = user1 };
+            var comment3 = new CommentDb { Content = "Test Content 3", CreatedDateTimeUtc = new DateTime(20, 1, 6), User = user2, Votes = new[] { vote1, vote2} };
 
-            var post1 = new PostDb()
+            var post1 = new PostDb
             {
                 Title = "Test Title 1",
                 Summary = "Test Summary 1",
@@ -56,7 +56,7 @@ namespace HubBlogAssignment.Tests.DataAccessTests
                 Comments = new [] { comment1, comment2 },
                 Votes = new[] {vote3, vote4}
             };
-            var post2 = new PostDb()
+            var post2 = new PostDb
             {
                 Title = "Test Title 2",
                 Summary = "Test Summary 2",
@@ -66,7 +66,7 @@ namespace HubBlogAssignment.Tests.DataAccessTests
                 Categories = new[] { category1, category2 },
                 Comments = new[] { comment3 }
             };
-            var post3 = new PostDb()
+            var post3 = new PostDb
             {
                 Title = "Test Title 3",
                 Summary = "Test Summary 3",
@@ -75,7 +75,7 @@ namespace HubBlogAssignment.Tests.DataAccessTests
                 User = user3,
             };
 
-            context.Set<PostDb>().AddRange(new PostDb[] { post1, post2, post3 });
+            context.Set<PostDb>().AddRange(post1, post2, post3);
             context.SaveChanges();
         }
     }

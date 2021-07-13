@@ -23,10 +23,10 @@ namespace HubBlogAssignment.UI.Services
             resp.EnsureSuccessStatusCode();
         }
 
-        public async Task<IEnumerable<CommentReadDto>> GetComments(int postId, OrderBy OrderBy)
+        public async Task<IEnumerable<CommentReadDto>> GetComments(int postId, OrderBy orderBy)
         {
             var client = httpClientFactory.CreateClient("HubBlog.Api.NoAuth");
-            return await client.GetFromJsonAsync<IEnumerable<CommentReadDto>>($"Posts/{postId}/Comments?orderBy={OrderBy}");
+            return await client.GetFromJsonAsync<IEnumerable<CommentReadDto>>($"Posts/{postId}/Comments?orderBy={orderBy}");
         }
     }
 }

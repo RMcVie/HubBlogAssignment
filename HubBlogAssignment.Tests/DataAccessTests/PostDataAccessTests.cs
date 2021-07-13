@@ -58,7 +58,7 @@ namespace HubBlogAssignment.Tests.DataAccessTests
             var post = FakeDataGenerator.FakePosts().Generate(1).Single();
             await dataAccess.CreatePost(post, new Guid("11111111-1111-1111-1111-111111111111")).ConfigureAwait(false);
 
-            using var context = new HubDbContext(DbContextOptions);
+            await using var context = new HubDbContext(DbContextOptions);
             var insertedPost = await context.Set<PostDb>().Include(p => p.User).SingleAsync(p => p.Id == 4).ConfigureAwait(false);
             insertedPost.Summary.Should().Be(post.Summary);
             insertedPost.Content.Should().Be(post.Content);
