@@ -22,7 +22,8 @@ namespace HubBlogAssignment.Api
                 .ForMember(d=>d.Categories, opts => opts.Ignore())
                 .ForMember(d => d.Id, opts => opts.Ignore());
             CreateMap<Comment, CommentReadDto>()
-                .ForMember(d=>d.Score, opts => opts.MapFrom(src => src.VotesCount))
+                .ForMember(d => d.Score, opts => opts.MapFrom(src => src.VotesCount))
+                .ForMember(d => d.User, opts => opts.MapFrom(src => src.User.DisplayName))
                 .ReverseMap();
             CreateMap<CommentDmlDto, Comment>()
                 .ForMember(d => d.CreatedDateTimeUtc, opts => opts.Ignore())
