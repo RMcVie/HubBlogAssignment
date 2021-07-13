@@ -1,6 +1,6 @@
 using System;
 
-namespace HubBlogAssignment.Shared
+namespace HubBlogAssignment.Shared.Read
 {
     public class CommentReadDto
     {

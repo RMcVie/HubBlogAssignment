@@ -1,4 +1,4 @@
-namespace HubBlogAssignment.Shared
+namespace HubBlogAssignment.Shared.DML
 {
     public class CommentDmlDto
     {

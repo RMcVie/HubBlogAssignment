@@ -1,8 +1,7 @@
-﻿using HubBlogAssignment.Shared;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace HubBlogAssignment.Data.Entities
+namespace HubBlogAssignment.Data.Entities.Database
 {
     public class User: BaseEntity
     {

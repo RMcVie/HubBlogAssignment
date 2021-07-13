@@ -3,6 +3,7 @@ using HubBlogAssignment.Data.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
+using HubBlogAssignment.Data.Entities.Database;
 
 namespace HubBlogAssignment.Data.DataAccess
 {

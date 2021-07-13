@@ -1,12 +1,13 @@
-﻿using HubBlogAssignment.Data.Entities;
-using HubBlogAssignment.Shared;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HubBlogAssignment.Data.Entities;
+using HubBlogAssignment.Data.Entities.Database;
+using HubBlogAssignment.Data.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
-namespace HubBlogAssignment.Data
+namespace HubBlogAssignment.Data.DataAccess
 {
     public class PostAccess : IPostAccess
     {

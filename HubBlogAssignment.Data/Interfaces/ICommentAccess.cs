@@ -1,10 +1,10 @@
-﻿using HubBlogAssignment.Data.Entities;
-using HubBlogAssignment.Shared;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using HubBlogAssignment.Data.Entities;
+using HubBlogAssignment.Shared;
 
-namespace HubBlogAssignment.Data
+namespace HubBlogAssignment.Data.Interfaces
 {
     public interface ICommentAccess
     {

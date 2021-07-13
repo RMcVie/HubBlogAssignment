@@ -1,8 +1,8 @@
-﻿using HubBlogAssignment.Data.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using HubBlogAssignment.Data.Entities;
 
-namespace HubBlogAssignment.Data
+namespace HubBlogAssignment.Data.Interfaces
 {
     public interface ICategoryAccess
     {

@@ -4,7 +4,10 @@ using AutoMapper;
 using HubBlogAssignment.Api.ExtensionMethods;
 using HubBlogAssignment.Data;
 using HubBlogAssignment.Data.Entities;
+using HubBlogAssignment.Data.Interfaces;
 using HubBlogAssignment.Shared;
+using HubBlogAssignment.Shared.DML;
+using HubBlogAssignment.Shared.Read;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
