@@ -11,8 +11,8 @@ namespace HubBlogAssignment.Data.Entities
     {
         public User()
         {
-            Comments = new List<CommentDb>();
-            Posts = new List<PostDb>();
+            Comments = new HashSet<CommentDb>();
+            Posts = new HashSet<PostDb>();
         }
 
         public string DisplayName { get; set; }

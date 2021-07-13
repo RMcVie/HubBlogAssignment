@@ -8,8 +8,9 @@ namespace HubBlogAssignment.Shared
     {
         public PostDb()
         {
-            Categories = new List<Category>();
-            Comments = new List<CommentDb>();
+            Categories = new HashSet<Category>();
+            Comments = new HashSet<CommentDb>();
+            Votes = new HashSet<Vote>();
         }
         public string Title { get; set; }
         public string Summary { get; set; }
